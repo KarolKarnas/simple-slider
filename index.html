@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <title>Simple-Slider</title>
-</head>
-<body>
-<div class="slider-container">
-    <div class="slider">
-        <img class="slide img-1" src="./img/1.jpg" alt="" />
-        <img class="slide img-2" src="./img/2.jpg" alt="" />
-        <img class="slide img-3" src="./img/3.jpg" alt="" />
-    </div>
-</div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+		/>
+		<title>Simple-Slider</title>
+	</head>
+	<body>
+		<div class="slider-container">
+			<div class="slider">
+				<img class="slide img-1" src="./img/1.jpg" alt="" />
+				<img class="slide img-2" src="./img/2.jpg" alt="" />
+				<img class="slide img-3" src="./img/3.jpg" alt="" />
+			</div>
+		</div>
+		<span id="prev-btn" class="icon-prev icon material-symbols-outlined">
+			arrow_back_ios
+		</span>
+		<span id="next-btn" class="icon-next icon material-symbols-outlined">
+			arrow_forward_ios
+		</span>
 
-<div id="cool-div"></div>
+		<div class="slider-nav">
+			<span class="icon-nav material-symbols-outlined" data-counter="0"> radio_button_checked </span>
+			<span class="icon-nav material-symbols-outlined" data-counter="1"> radio_button_unchecked </span>
+			<span class="icon-nav material-symbols-outlined" data-counter="2"> radio_button_unchecked </span>
+		</div>
 
-<!-- <button id="prev-btn">Prev</button> -->
-<!-- <button id="next-btn">Next</button> -->
-<span id="prev-btn" class="icon material-symbols-outlined">
-    arrow_back_ios
-    </span>
-<span id="next-btn" class="icon material-symbols-outlined">
-    arrow_forward_ios
-    </span>
-
-<script src="script.js"></script>
-
-</body>
+		<script src="script.js"></script>
+	</body>
 </html>

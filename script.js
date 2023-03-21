@@ -1,65 +1,65 @@
 const images = document.querySelectorAll('.slide');
-let imagesDuplicates = [...images];
+const sliderNav = document.querySelector('.slider-nav');
 
 const size = images[0].clientWidth;
-console.log(size);
+// console.log(size);
 
-let firstDup = images[0].cloneNode(true)
-firstDup.classList.add('first-dup')
-imagesDuplicates.push(firstDup);
+let counter = 0;
+const maxCounter = images.length - 1;
+const minCounter = 0;
 
-let lastDup = images[images.length - 1].cloneNode(true)
-lastDup.classList.add('last-dup')
-imagesDuplicates.unshift(lastDup);
+const nextBtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById('prev-btn');
 
-const slider = document.querySelector('.slider');
-slider.innerHTML = '';
+const navIcons = document.querySelectorAll('.icon-nav');
 
-console.log(imagesDuplicates);
+const renderNav = (counter) => {
+	navIcons.forEach((icon) => {
+		if (counter == icon.dataset.counter) {
+			icon.innerHTML = 'radio_button_checked';
+		} else {
+			icon.innerHTML = 'radio_button_unchecked';
+		}
+	});
+};
 
-function renderOnLoad() {
-    imagesDuplicates.forEach((slide) => {
-        const value = -855;
-        slide.style.transform = `translateX(${value}px)`
-        slider.appendChild(slide);
-    }); 
-}
-renderOnLoad()
+const renderWithCoutner = (counter) => {
+	images.forEach((slide) => {
+		const value = counter * -size;
+		slide.style.transform = `translateX(${value}px)`;
+	});
+	renderNav(counter);
+};
 
-let counter = 1;
-let maxCounter = imagesDuplicates.length - 1;
-let minCounter = 0
+const nextImage = () => {
+	if (counter < maxCounter) counter++;
+	renderWithCoutner(counter);
+};
 
-function renderWithCoutner(counter) {
-    imagesDuplicates.forEach((slide) => {
-        const value = counter * -855;
-        slide.style.transform = `translateX(${value}px)`
-    }); 
-}
-
-
-const nextBtn = document.getElementById('next-btn')
-const prevBtn = document.getElementById('prev-btn')
+const prevImage = () => {
+	if (counter > minCounter) counter--;
+	renderWithCoutner(counter);
+};
 
 nextBtn.addEventListener('click', () => {
-if (counter < maxCounter) 
-counter++;
-renderWithCoutner(counter)
-})
+	nextImage();
+});
 
 prevBtn.addEventListener('click', () => {
-if (counter > minCounter) 
-counter--;
-renderWithCoutner(counter)
-})
+	prevImage();
+});
 
+window.addEventListener('keydown', (e) => {
+	if (e.keyCode === 39) {
+		nextImage();
+	} else if (e.keyCode === 37) {
+		prevImage();
+	}
+});
 
-
-
-
-
-
-
-
-
-
+sliderNav.addEventListener('click', (e) => {
+	if (e.target.classList.contains('icon-nav')) {
+		counter = e.target.dataset.counter;
+		renderWithCoutner(counter);
+	}
+});
