@@ -5,6 +5,7 @@ const size = images[0].clientWidth;
 // console.log(size);
 
 let counter = 0;
+let timeOutFlag = true;
 const maxCounter = images.length - 1;
 const minCounter = 0;
 
@@ -41,6 +42,23 @@ const prevImage = () => {
 	renderWithCoutner(counter);
 };
 
+const autoSlide = () => {
+	setTimeout(() => {
+		if (timeOutFlag) {
+			nextImage();
+			if (counter === 2) {
+				timeOutFlag = !timeOutFlag;
+			}
+		} else if (!timeOutFlag) {
+			prevImage();
+			if (counter === 0) {
+				timeOutFlag = !timeOutFlag;
+			}
+		}
+		autoSlide();
+	}, 2000);
+};
+
 nextBtn.addEventListener('click', () => {
 	nextImage();
 });
@@ -62,4 +80,8 @@ sliderNav.addEventListener('click', (e) => {
 		counter = e.target.dataset.counter;
 		renderWithCoutner(counter);
 	}
+});
+
+addEventListener('DOMContentLoaded', () => {
+	autoSlide();
 });
